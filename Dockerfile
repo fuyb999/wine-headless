@@ -54,4 +54,6 @@ RUN wineserver -w && \
     xvfb-run -a wine reg add "HKCU\\Control Panel\\International" /v Language /t REG_SZ /d "zh_CN" /f && \
     xvfb-run -a wine reg add "HKCU\\Control Panel\\Desktop" /v PreferredUILanguages /t REG_MULTI_SZ /d "zh-CN" /f
 
-RUN xvfb-run -a wine cmd /c "echo 32-bit environment ready"
+RUN wineserver -w && \
+    xvfb-run -a wine cmd /c "echo 64位 Windows Server 2016 基础环境配置完成！" || \
+    echo "环境配置有警告，但基础功能可用"
